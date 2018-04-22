@@ -1,0 +1,73 @@
+
+body {
+	min-height: 100vh;  /* need this line to
+					tell body to fill viewport */
+	font-family: 'Montserrat', sans-serif;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	color: blue;
+     }
+
+header {
+       text-align: left;
+       padding: 30px;
+			 width: 20%;
+}
+
+
+h1 {
+   font-size: x-large;
+   font-weight: bold;
+
+}
+
+#Search{
+	padding: 30px;
+	margin-left: 70px;
+	font-size: x-large;
+}
+
+#place_holder{
+	/* width: 70%; */
+	margin-left: 100px;
+}
+
+#holder_name{
+	display: flex;
+	flex-direction: row;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+#Author{
+	width: 24%;
+	padding-left: 50px;
+}
+#Title{
+	width: 24%;
+}
+#ISBN{
+	width: 30%;
+}
+
+button{
+	width: 100%;
+	margin: 50px;
+}
+
+main {
+     flex: 1 0 auto;  /* the sticky footer trick without the footer */
+}
+
+
+input {
+	border-style: solid;
+	border-radius: 5px;
+	font-size: medium;
+}
+
+
+p {
+	font-size: medium;
+	margin: 10px;
+}
