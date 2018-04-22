@@ -16,9 +16,10 @@ function newRequest() {
 	isbn = isbn.replace("-","");
 
 	var description = document.getElementById("description");
-	if(description !=null){
+	if(description != null){
 		description = description.trim();
 	}
+
 	// Connects possible query parts with pluses
 	var query = ["",title,author,isbn].reduce(fancyJoin);
 
@@ -61,14 +62,20 @@ function handleResponse(bookListObj) {
 
 	/* where to put the data on the Web page */
 	var bookDisplay = document.getElementById("bookDisplay");
+	var authorDisplay = document.getElementById("authorDisplay");
 
 	/* write each title as a new paragraph */
 	for (i=0; i<bookList.length; i++) {
+
 		var book = bookList[i];
 		var title = book.volumeInfo.title;
+		var author = book.volumeInfo.author;
 		var titlePgh = document.createElement("p");
+		var authorPgh = document.createElement("p");
 		/* ALWAYS AVOID using the innerHTML property */
 		titlePgh.textContent = title;
+		authorPgh.textContent = author;
 		bookDisplay.append(titlePgh);
+		authorDisplay.append(authorPgh);
 	}
 }
