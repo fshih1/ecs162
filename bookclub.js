@@ -1,6 +1,53 @@
 
 /* Called when the user pushes the "submit" button */
 /* Sends a request to the API using the JSONp protocol */
+
+
+function transition(){
+	var w = parseInt(window.innerWidth)
+	if(w  > 600){
+		var text = document.getElementById("Search");
+		text.style.display = "none";
+
+		var head = document.getElementById("book_club");
+		head.style.width = "10%";
+
+		var header = document.getElementById("header");
+		header.style.display = "flex";
+
+		$(document).ready(function() {
+				$("#place_holder").appendTo("header");
+				$("#button").appendTo("header");
+	 });
+
+	 document.getElementById("place_holder").style.marginLeft = "0px";
+	 document.getElementById("button").style.marginLeft = "0px";
+	 document.getElementById("button2").style.margin = "0px";
+	}
+	else{
+		var head = document.getElementById("book_club");
+		// head.style.width = "90%";
+
+		var header = document.getElementById("header");
+		head.style.display = "flex";
+
+		var text = document.getElementById("Search");
+		text.style.display = "none";
+
+		var placeHolder = document.getElementById("place_holder");
+		placeHolder.style.display = "none";
+
+		var button = document.getElementById("button");
+		button.style.display = "none";
+
+		var sign = document.getElementById("sign");
+		sign.style.width="10%";
+		sign.style.display = "flex";
+	}
+
+
+}
+
 function newRequest() {
 
 	var author = document.getElementById("author").value;
@@ -67,18 +114,37 @@ function handleResponse(bookListObj) {
 
 	/* write each title as a new paragraph */
 	for (i=0; i<bookList.length; i++) {
-		var book = bookList[i];
-		var title = book.volumeInfo.title;
+			var book = bookList[i];
+			var title = book.volumeInfo.title;
+			var author = book.volumeInfo.authors[0];
+			var description = book.volumeInfo.description;
+			var cover = book.volumeInfo.imageLinks.thumbnail;
 
-		var author = book.volumeInfo.authors[0];
-		var authorPgh = document.createElement("p");
-		authorPgh.textContent = author;
-		bookDisplay.append(authorPgh);
+			var tile = document.createElement("div");
+			tile.setAttribute("id", "div1");
+			bookDisplay.append(tile);
 
-		var titlePgh = document.createElement("p");
-		/* ALWAYS AVOID using the innerHTML property */
-		titlePgh.textContent = title;
-		bookDisplay.append(titlePgh);
+			var coverPgh = document.createElement("img");
+			coverPgh.src = cover;
+			tile.append(coverPgh);
 
-	}
+			var subTile = document.createElement("div");
+			subTile.setAttribute("id", "div2");
+			tile.append(subTile);
+
+			var titlePgh = document.createElement("p");
+			/* ALWAYS AVOID using the innerHTML property */
+			titlePgh.textContent = title;
+			subTile.append(titlePgh);
+
+			var authorPgh = document.createElement("p");
+			authorPgh.textContent = author;
+			subTile.append(authorPgh);
+
+			var des = description.split(" ", 30);
+			var first30des = des.join(" ") + ". . .";
+			var first30desPgh = document.createElement("p");
+			first30desPgh.textContent = first30des;
+			subTile.append(first30desPgh);
+		}
 }

@@ -13,6 +13,7 @@ body {
 header {
        text-align: left;
        padding: 30px;
+			 white-space: nowrap;
 }
 
 
@@ -22,14 +23,10 @@ h1 {
 
 }
 
-div.car {
-     background-color: white;
-     font-size: medium;
-     text-align: center;
-     border: 3px solid blue;
-     height: auto;  /* just big enough to fit contents */
-     flex: 0 1 15%;
-
+#sign {
+     display: none;
+		 font-size: 30px;
+		 padding-left: 40px;
 }
 
 #Search{
@@ -78,6 +75,7 @@ button{
 	margin: 50px;
 }
 
+
 main {
      flex: 1 0 auto;  /* the sticky footer trick without the footer */
 }
@@ -97,9 +95,6 @@ p {
 
 @media (max-width: 600px){
 
-header{
-	text-align: center;
-}
 
 #Search{
 	padding: 30px;
@@ -145,5 +140,19 @@ button{
 	width: auto;
 	margin: 10px;
 }
+
+#header{
+	display: flex;
+	justify-content: space-around;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+h1{
+	font-size: 40px;
+	font-weight: bold;
+}
+
 
 }

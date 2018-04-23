@@ -6,13 +6,15 @@
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" type="text/css" href="reset.css">
 <link rel="stylesheet" type="text/css" href="bookclub.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 </head>
 
 <body>
 
-<header>
-<h1>BOOK CLUB</h1>
+<header id="header">
+<h1 id="book_club">BOOK CLUB</h1>
+<div id="sign"> &#128269</div>
 </header>
 
 
@@ -44,7 +46,10 @@
 
 </div>
 <div id = "button">
-<button onclick="newRequest()">submit</button>
+<button id="button2" onclick="newRequest();transition()">submit</button>
+</div>
+
+<div id = "">
 </div>
 
 <div id="bookDisplay"></div>
