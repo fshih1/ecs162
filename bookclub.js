@@ -28,7 +28,6 @@ function newRequest() {
 	// The library returned just calls the callback function we specify, with
 	// the JSON data we want as an argument.
 	if (query != "") {
-
 		// remove old script
 		var oldScript = document.getElementById("jsonpCall");
 		if (oldScript != null) {
@@ -48,6 +47,8 @@ function newRequest() {
 		document.body.appendChild(script);
 		}
 
+
+
 }
 
 
@@ -62,20 +63,22 @@ function handleResponse(bookListObj) {
 
 	/* where to put the data on the Web page */
 	var bookDisplay = document.getElementById("bookDisplay");
-	var authorDisplay = document.getElementById("authorDisplay");
+	// var authorDisplay = document.getElementById("authorDisplay");
 
 	/* write each title as a new paragraph */
 	for (i=0; i<bookList.length; i++) {
-
 		var book = bookList[i];
 		var title = book.volumeInfo.title;
-		var author = book.volumeInfo.author;
-		var titlePgh = document.createElement("p");
+
+		var author = book.volumeInfo.authors[0];
 		var authorPgh = document.createElement("p");
+		authorPgh.textContent = author;
+		bookDisplay.append(authorPgh);
+
+		var titlePgh = document.createElement("p");
 		/* ALWAYS AVOID using the innerHTML property */
 		titlePgh.textContent = title;
-		authorPgh.textContent = author;
 		bookDisplay.append(titlePgh);
-		authorDisplay.append(authorPgh);
+
 	}
 }

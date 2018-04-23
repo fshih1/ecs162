@@ -3,6 +3,7 @@ body {
 	min-height: 100vh;  /* need this line to
 					tell body to fill viewport */
 	font-family: 'Montserrat', sans-serif;
+	/* background-color: #EDEDED; */
 	background-color: white;
 	display: flex;
 	flex-direction: column;
@@ -12,13 +13,22 @@ body {
 header {
        text-align: left;
        padding: 30px;
-			 width: 20%;
 }
 
 
 h1 {
    font-size: x-large;
    font-weight: bold;
+
+}
+
+div.car {
+     background-color: white;
+     font-size: medium;
+     text-align: center;
+     border: 3px solid blue;
+     height: auto;  /* just big enough to fit contents */
+     flex: 0 1 15%;
 
 }
 
@@ -29,8 +39,10 @@ h1 {
 }
 
 #place_holder{
-	/* width: 70%; */
+	display: flex;
+	flex-direction: row;
 	margin-left: 100px;
+	white-space: normal;
 }
 
 #holder_name{
@@ -42,16 +54,27 @@ h1 {
 #Author{
 	width: 24%;
 	padding-left: 50px;
+	flex-direction: column;
+	display: flex;
 }
 #Title{
 	width: 24%;
+	flex-direction: column;
+	display: flex;
 }
 #ISBN{
-	width: 30%;
+	width: 24%;
+	flex-direction: column;
+	display: flex;
+}
+
+#button{
+	justify-content: center;
+	display: flex;
 }
 
 button{
-	width: 100%;
+	width: 100px;
 	margin: 50px;
 }
 
@@ -70,4 +93,57 @@ input {
 p {
 	font-size: medium;
 	margin: 10px;
+}
+
+@media (max-width: 600px){
+
+header{
+	text-align: center;
+}
+
+#Search{
+	padding: 30px;
+	margin-left: 0px;
+	font-size: x-large;
+}
+
+#place_holder{
+	display: flex;
+	flex-direction: column;
+	margin-left: 30px;
+	white-space: normal;
+}
+
+#Author{
+	width: auto;
+	padding-left: 0px;
+	flex-direction: column;
+	display: flex;
+	padding-right: 20px;
+	margin: 10px;
+}
+
+#Title{
+	width: auto;
+	padding-left: 0px;
+	flex-direction: column;
+	display: flex;
+	padding-right: 20px;
+	margin: 10px;
+}
+
+#ISBN{
+	width: auto;
+	padding-left: 0px;
+	flex-direction: column;
+	display: flex;
+	padding-right: 20px;
+	margin: 10px;
+}
+
+button{
+	width: auto;
+	margin: 10px;
+}
+
 }
