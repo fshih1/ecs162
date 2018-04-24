@@ -139,23 +139,23 @@ img {
 }
 
 
-@media (max-width: 600px){
+@media (max-width: 600px) {
 
 
-#Search{
+#Search {
 	padding: 30px;
 	margin-left: 0px;
 	font-size: x-large;
 }
 
-#place_holder{
+#place_holder {
 	display: flex;
 	flex-direction: column;
 	margin-left: 30px;
 	white-space: normal;
 }
 
-#Author{
+#Author {
 	width: auto;
 	padding-left: 0px;
 	flex-direction: column;
@@ -164,7 +164,7 @@ img {
 	margin: 10px;
 }
 
-#Title{
+#Title {
 	width: auto;
 	padding-left: 0px;
 	flex-direction: column;
@@ -173,7 +173,7 @@ img {
 	margin: 10px;
 }
 
-#ISBN{
+#ISBN {
 	width: auto;
 	padding-left: 0px;
 	flex-direction: column;
@@ -182,12 +182,12 @@ img {
 	margin: 10px;
 }
 
-button{
+button {
 	width: auto;
 	margin: 10px;
 }
 
-#header{
+#header {
 	display: flex;
 	justify-content: space-around;
 	flex-direction: row;
