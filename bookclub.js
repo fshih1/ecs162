@@ -138,13 +138,19 @@ function getTile() {
 	authorPgh.textContent = author;
 	subTile.append(authorPgh);
 	//
+
+	if (descriptions == null) {
+		var emptyDescription = document.createElement("p");
+		subTile.append(emptyDescription);
+		return tile;
+	}
+
 	var des = descriptions.split(" ", 30);
 	var first30des = des.join(" ") + ". . .";
 	var first30desPgh = document.createElement("p");
 	first30desPgh.textContent = first30des;
 	subTile.append(first30desPgh);
 
-	if (tile > )
 	return tile;
 }
 
