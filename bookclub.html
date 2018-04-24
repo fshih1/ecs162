@@ -17,12 +17,13 @@
 <!-- <div id="sign"> &#128269 </div> -->
 </header>
 
-<main>
+<main id="main">
 
-    <div id="overlay" onclick="off()">
-        <button class="arrow"> left </button>
+    <div id="overlay">
+        <button class="arrow" onclick="left()"> left </button>
         <div></div>
-        <button class="arrow"> right </button>
+        <button class="arrow" onclick="right()"> right </button>
+        <button id="keep" onclick="keep()"> keep </button>
     </div>
 
     <div id= "Search">Search for a book by...</div>
@@ -50,11 +51,10 @@
 
     </div>
     <div id = "button">
-    <button id="button2" onclick="newRequest();transition();chooseBooks()">submit</button>
+    <button id="button2" onclick="newRequest();transition()">submit</button>
     </div>
 
-    <div id = "">
-    </div>
+
 
     <div id="bookDisplay"></div>
     <div id="authorDisplay"></div>

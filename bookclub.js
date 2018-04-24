@@ -9,6 +9,8 @@
 // 	overlay.replaceChild(overlayTile, overlay.childNodes[1]);
 //
 // }
+var book_counter = 0;
+var bookList;
 
 function transition() {
 	var w = parseInt(window.innerWidth)
@@ -117,100 +119,124 @@ function tile_func(i) {
 /* The callback function, which gets run when the API returns the result of our query */
 /* Replace with your code! */
 function handleResponse(bookListObj) {
-	var bookList = bookListObj.items;
-
+	bookList = bookListObj.items;
 	/* where to put the data on the Web page */
-	var bookDisplay = document.getElementById("bookDisplay");
-	// var authorDisplay = document.getElementById("authorDisplay");
-
-	/* write each title as a new paragraph */
-	var funcky = function(i) {
-		var book = bookList[i];
-		var title = book.volumeInfo.title;
-		var author = book.volumeInfo.authors[0];
-		var description = book.volumeInfo.description;
-		var cover = book.volumeInfo.imageLinks.thumbnail;
-
-		var tile = document.createElement("div");
-		tile.class = "div1";
-		tile.id = i;
-		bookDisplay.append(tile);
-
-		var coverPgh = document.createElement("img");
-		coverPgh.src = cover;
-		tile.append(coverPgh);
-
-		var subTile = document.createElement("div");
-		subTile.setAttribute("class", "div2");
-		tile.append(subTile);
-
-		var titlePgh = document.createElement("p");
-		/* ALWAYS AVOID using the innerHTML property */
-		titlePgh.textContent = title;
-		subTile.append(titlePgh);
-
-		var authorPgh = document.createElement("p");
-		authorPgh.textContent = author;
-		subTile.append(authorPgh);
-
-		var des = description.split(" ", 30);
-		var first30des = des.join(" ") + ". . .";
-		var first30desPgh = document.createElement("p");
-		first30desPgh.textContent = first30des;
-		subTile.append(first30desPgh);
-
-	}
-
-	// for (i=0; i<bookList.length; i++) {
-	// 		var book = bookList[i];
-	// 		var title = book.volumeInfo.title;
-	// 		var author = book.volumeInfo.authors[0];
-	// 		var description = book.volumeInfo.description;
-	// 		var cover = book.volumeInfo.imageLinks.thumbnail;
+	// var bookDisplay = document.getElementById("bookDisplay");
 	//
-	// 		var tile = document.createElement("div");
-	// 		tile.class = "div1";
-	// 		tile.id = i;
-	// 		bookDisplay.append(tile);
+	// // var authorDisplay = document.getElementById("authorDisplay");
+	// /* write each title as a new paragraph */
+	// var book = bookList[book_counter];
+	// var title = book.volumeInfo.title;
+	// var author = book.volumeInfo.authors[0];
+	// var descriptions = book.volumeInfo.description;
+	// var cover = book.volumeInfo.imageLinks.thumbnail;
+	// //
+	// var tile = document.createElement("div");
+	// // 		tile.style.display = "none";
+	// tile.class = "div1";
+	// tile.id = book_counter;
+	// // 		bookDisplay.append(tile);
 	//
-	// 		var coverPgh = document.createElement("img");
-	// 		coverPgh.src = cover;
-	// 		tile.append(coverPgh);
-	//
-	// 		var subTile = document.createElement("div");
-	// 		subTile.setAttribute("class", "div2");
-	// 		tile.append(subTile);
-	//
-	// 		var titlePgh = document.createElement("p");
-	// 		/* ALWAYS AVOID using the innerHTML property */
-	// 		titlePgh.textContent = title;
-	// 		subTile.append(titlePgh);
-	//
-	// 		var authorPgh = document.createElement("p");
-	// 		authorPgh.textContent = author;
-	// 		subTile.append(authorPgh);
-	//
-	// 		var des = description.split(" ", 30);
-	// 		var first30des = des.join(" ") + ". . .";
-	// 		var first30desPgh = document.createElement("p");
-	// 		first30desPgh.textContent = first30des;
-	// 		subTile.append(first30desPgh);
-	// 	}
-
-		var overlay = document.getElementById("overlay");
-		overlay.style.display = "block";
-		var overlayTile = document.getElementById(0);
-		overlay.replaceChild(overlayTile, overlay.childNodes[2]);
-
-		return funcky;
+	// var overlay = document.getElementById("overlay");
+	// overlay.style.display = "block";
+	// overlay.append(tile);//
+	// var coverPgh = document.createElement("img");
+	// coverPgh.src = cover;
+	// tile.append(coverPgh);
+	// //
+	// var subTile = document.createElement("div");
+	// subTile.setAttribute("class", "div2");
+	// tile.append(subTile);
+	// //
+	// var titlePgh = document.createElement("p");
+	// // 		/* ALWAYS AVOID using the innerHTML property */
+	// titlePgh.textContent = title;
+	// subTile.append(titlePgh);
+	// //
+	// var authorPgh = document.createElement("p");
+	// authorPgh.textContent = author;
+	// subTile.append(authorPgh);
+	// //
+	// var des = descriptions.split(" ", 30);
+	// var first30des = des.join(" ") + ". . .";
+	// var first30desPgh = document.createElement("p");
+	// first30desPgh.textContent = first30des;
+	// subTile.append(first30desPgh);
+	response();
 }
-//
-// function on() {
-//     var overlay = document.createElement("div")
-// 		overlay.id = "overlay";
-// 		overlay.style.display = "block";
-// }
+
+function response(){
+	bookDisplay = document.getElementById("bookDisplay");
+
+	// var authorDisplay = document.getElementById("authorDisplay");
+	/* write each title as a new paragraph */
+	var book = bookList[book_counter];
+	var title = book.volumeInfo.title;
+	var author = book.volumeInfo.authors[0];
+	var descriptions = book.volumeInfo.description;
+	var cover = book.volumeInfo.imageLinks.thumbnail;
+	//
+	var tile = document.createElement("div");
+	// 		tile.style.display = "none";
+	tile.class = "div1";
+	tile.id = book_counter;
+	// 		bookDisplay.append(tile);
+
+	var overlay = document.getElementById("overlay");
+	overlay.style.display = "block";
+	overlay.append(tile);//
+	var coverPgh = document.createElement("img");
+	coverPgh.src = cover;
+	tile.append(coverPgh);
+	//
+	var subTile = document.createElement("div");
+	subTile.setAttribute("class", "div2");
+	tile.append(subTile);
+	//
+	var titlePgh = document.createElement("p");
+	// 		/* ALWAYS AVOID using the innerHTML property */
+	titlePgh.textContent = title;
+	subTile.append(titlePgh);
+	//
+	var authorPgh = document.createElement("p");
+	authorPgh.textContent = author;
+	subTile.append(authorPgh);
+	//
+	var des = descriptions.split(" ", 30);
+	var first30des = des.join(" ") + ". . .";
+	var first30desPgh = document.createElement("p");
+	first30desPgh.textContent = first30des;
+	subTile.append(first30desPgh);
+}
+
 
 function off() {
     document.getElementById("overlay").style.display = "none";
+}
+
+function keep() {
+		var main = document.getElementById("main");
+		var tileWrap = document.createElement("div");
+		tileWrap.id = "tileWrapper";
+		main.append(tileWrap);
+
+		var wrapped_tile = document.getElementById(book_counter);
+		tileWrap.append(wrapped_tile);
+
+}
+
+function left(){
+		document.getElementById(book_counter).style.display = "none";
+		if(book_counter - 1 >= 0){
+			book_counter = book_counter - 1;
+			response();
+		}
+}
+
+function right(){
+		document.getElementById(book_counter).style.display = "none";
+		if(book_counter + 1 <= 9){
+			book_counter = book_counter + 1;
+			response();
+		}
 }
