@@ -120,7 +120,46 @@ function tile_func(i) {
 /* Replace with your code! */
 function handleResponse(bookListObj) {
 	bookList = bookListObj.items;
-	response();
+	var overlay = document.getElementById("overlay");
+	overlay.style.display = "block";
+	replace();
+}
+
+function getTile() {
+	var book = bookList[book_counter];
+	var title = book.volumeInfo.title;
+	var author = book.volumeInfo.authors[0];
+	var descriptions = book.volumeInfo.description;
+	var cover = book.volumeInfo.imageLinks.thumbnail;
+
+	var tile = document.createElement("div");
+	tile.class = "div1";
+	tile.id = book_counter;
+
+	var coverPgh = document.createElement("img");
+	coverPgh.src = cover;
+	tile.append(coverPgh);
+	//
+	var subTile = document.createElement("div");
+	subTile.setAttribute("class", "div2");
+	tile.append(subTile);
+	//
+	var titlePgh = document.createElement("p");
+	// 		/* ALWAYS AVOID using the innerHTML property */
+	titlePgh.textContent = title;
+	subTile.append(titlePgh);
+	//
+	var authorPgh = document.createElement("p");
+	authorPgh.textContent = author;
+	subTile.append(authorPgh);
+	//
+	var des = descriptions.split(" ", 30);
+	var first30des = des.join(" ") + ". . .";
+	var first30desPgh = document.createElement("p");
+	first30desPgh.textContent = first30des;
+	subTile.append(first30desPgh);
+
+	return tile;
 }
 
 function response(){
@@ -138,11 +177,8 @@ function response(){
 	// 		tile.style.display = "none";
 	tile.class = "div1";
 	tile.id = book_counter;
-			bookDisplay.append(tile);
+	bookDisplay.append(tile);
 
-	var overlay = document.getElementById("overlay");
-	overlay.style.display = "block";
-	overlay.append(tile);//
 	var coverPgh = document.createElement("img");
 	coverPgh.src = cover;
 	tile.append(coverPgh);
@@ -173,20 +209,15 @@ function off() {
 }
 
 function keep() {
-		var main = document.getElementById("main");
-		var tileWrap = document.createElement("div");
-		tileWrap.id = "tileWrapper";
-		main.append(tileWrap);
-		tileWrap.append(wrapped_tile);
-		response();
+		var tileWrapper = document.getElementById("tileWrapper");
+		var cur_tile = getTile();
+		tileWrapper.append(cur_tile);
+		// response();
 }
 
 function replace(){
 	var toBeReplaced = document.getElementById("overlay");
-	var replacement = document.getElementById(book_counter);
-	// if (replacement == NULL) {
-	//
-	// }
+	var replacement = getTile();
 	var copy_replacement = replacement.cloneNode(true);
 	toBeReplaced.replaceChild(copy_replacement, toBeReplaced.childNodes[3]);
 
