@@ -29,6 +29,9 @@ h1 {
 		 padding-left: 40px;
 }
 
+#left {
+	display: none;
+}
 #Search{
 	padding: 30px;
 	margin-left: 70px;

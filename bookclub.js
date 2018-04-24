@@ -120,48 +120,6 @@ function tile_func(i) {
 /* Replace with your code! */
 function handleResponse(bookListObj) {
 	bookList = bookListObj.items;
-	/* where to put the data on the Web page */
-	// var bookDisplay = document.getElementById("bookDisplay");
-	//
-	// // var authorDisplay = document.getElementById("authorDisplay");
-	// /* write each title as a new paragraph */
-	// var book = bookList[book_counter];
-	// var title = book.volumeInfo.title;
-	// var author = book.volumeInfo.authors[0];
-	// var descriptions = book.volumeInfo.description;
-	// var cover = book.volumeInfo.imageLinks.thumbnail;
-	// //
-	// var tile = document.createElement("div");
-	// // 		tile.style.display = "none";
-	// tile.class = "div1";
-	// tile.id = book_counter;
-	// // 		bookDisplay.append(tile);
-	//
-	// var overlay = document.getElementById("overlay");
-	// overlay.style.display = "block";
-	// overlay.append(tile);//
-	// var coverPgh = document.createElement("img");
-	// coverPgh.src = cover;
-	// tile.append(coverPgh);
-	// //
-	// var subTile = document.createElement("div");
-	// subTile.setAttribute("class", "div2");
-	// tile.append(subTile);
-	// //
-	// var titlePgh = document.createElement("p");
-	// // 		/* ALWAYS AVOID using the innerHTML property */
-	// titlePgh.textContent = title;
-	// subTile.append(titlePgh);
-	// //
-	// var authorPgh = document.createElement("p");
-	// authorPgh.textContent = author;
-	// subTile.append(authorPgh);
-	// //
-	// var des = descriptions.split(" ", 30);
-	// var first30des = des.join(" ") + ". . .";
-	// var first30desPgh = document.createElement("p");
-	// first30desPgh.textContent = first30des;
-	// subTile.append(first30desPgh);
 	response();
 }
 
@@ -180,7 +138,7 @@ function response(){
 	// 		tile.style.display = "none";
 	tile.class = "div1";
 	tile.id = book_counter;
-	// 		bookDisplay.append(tile);
+			bookDisplay.append(tile);
 
 	var overlay = document.getElementById("overlay");
 	overlay.style.display = "block";
@@ -219,24 +177,50 @@ function keep() {
 		var tileWrap = document.createElement("div");
 		tileWrap.id = "tileWrapper";
 		main.append(tileWrap);
-
-		var wrapped_tile = document.getElementById(book_counter);
 		tileWrap.append(wrapped_tile);
+		response();
+}
+
+function replace(){
+	var toBeReplaced = document.getElementById("overlay");
+	var replacement = document.getElementById(book_counter);
+	// if (replacement == NULL) {
+	//
+	// }
+	var copy_replacement = replacement.cloneNode(true);
+	toBeReplaced.replaceChild(copy_replacement, toBeReplaced.childNodes[3]);
 
 }
 
 function left(){
-		document.getElementById(book_counter).style.display = "none";
-		if(book_counter - 1 >= 0){
-			book_counter = book_counter - 1;
-			response();
+		if(book_counter == 0){
+			document.getElementById(book_counter).style.display = "none";
+			document.getElementById("left").style.display = "none";
 		}
+		else{
+			document.getElementById("right").style.display = "block";
+			document.getElementById("left").style.display = "block";
+			// document.getElementById(book_counter).style.display = "none";
+			if(book_counter - 1 >= 0){
+				book_counter = book_counter - 1;
+				replace();
+			}
+		}
+
 }
 
 function right(){
-		document.getElementById(book_counter).style.display = "none";
-		if(book_counter + 1 <= 9){
-			book_counter = book_counter + 1;
-			response();
+		if(book_counter == bookList.length - 1 ){
+			// document.getElementById(book_counter).style.display = "none";
+			document.getElementById("right").style.display = "none";
+		}
+		else{
+			document.getElementById("right").style.display = "block";
+			document.getElementById("left").style.display = "block";
+			// document.getElementById(book_counter).style.display = "none";
+			if(book_counter + 1 <= bookList.length){
+				book_counter = book_counter + 1;
+				replace();
+			}
 		}
 }
