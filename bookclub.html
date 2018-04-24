@@ -14,47 +14,50 @@
 
 <header id="header">
 <h1 id="book_club">BOOK CLUB</h1>
-<div id="sign"> &#128269</div>
+<!-- <div id="sign"> &#128269 </div> -->
 </header>
 
-
 <main>
-<div id= "Search">Search for a book by...</div>
 
-<br>
-<div id ="holder_name">
+    <div id="overlay" onclick="off()">
+        <button class="arrow"> left </button>
+        <div></div>
+        <button class="arrow"> right </button>
+    </div>
+
+    <div id= "Search">Search for a book by...</div>
+
+    <!-- <br> -->
+    <div id ="holder_name">
+    </div>
+
+    <div id="place_holder">
+      <div id = "Author">
+        Author
+        <input id="author" placeholder="ex William Shakespeare">
+      </div>
+      <p>or</p>
+      <div id = "Title">
+        Title
+        <input id="title" placeholder="ex Romeo and Juliet">
+      </div>
+      <p>or</p>
+      <div id = "ISBN">
+        ISBN
+        <input id="isbn" placeholder="XXXXXXXXXX or XXX-XXXXXXXXXX">
+    </div>
 
 
+    </div>
+    <div id = "button">
+    <button id="button2" onclick="newRequest();transition();chooseBooks()">submit</button>
+    </div>
 
-</div>
-<div id="place_holder">
-  <div id = "Author">
-    Author
-    <input id="author" placeholder="ex William Shakespeare">
-  </div>
-  <p>or</p>
-  <div id = "Title">
-    Title
-    <input id="title" placeholder="ex Romeo and Juliet">
-  </div>
-  <p>or</p>
-  <div id = "ISBN">
-    ISBN
-    <input id="isbn" placeholder="XXXXXXXXXX or XXX-XXXXXXXXXX">
-</div>
+    <div id = "">
+    </div>
 
-
-</div>
-<div id = "button">
-<button id="button2" onclick="newRequest();transition()">submit</button>
-</div>
-
-<div id = "">
-</div>
-
-<div id="bookDisplay"></div>
-<div id="authorDisplay"></div>
-
+    <div id="bookDisplay"></div>
+    <div id="authorDisplay"></div>
 
 </main>
 <!-- The Javascript for this page -->
