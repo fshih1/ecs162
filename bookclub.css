@@ -8,7 +8,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	color: blue;
-     }
+}
 
 header {
        text-align: left;
@@ -108,11 +108,35 @@ p {
   background-color: rgba(0,0,0,0.7); /* Black background with opacity */
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
   cursor: pointer; /* Add a pointer on hover */
-
 }
 
+div.div1 {
+	display: flex;
+	flex-direction: row;
+	background-color: green;
+	margin: 10px;
+	flex: 0 1 30%;
+}
 
+img {
+		display: flex;
+		height: auto;
+		flex-grow: 1;
+		padding: 10px;
+}
 
+#tileWrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	padding: 10px;
+}
+
+#tileWrapOverlay {
+	display: flex;
+	justify-content: space-aroujnd;
+	padding: 30px;
+}
 
 
 @media (max-width: 600px){
@@ -171,10 +195,7 @@ button{
 	justify-content: center;
 }
 
-h1{
+h1 {
 	font-size: 40px;
 	font-weight: bold;
-}
-
-
 }

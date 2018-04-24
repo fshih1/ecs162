@@ -1,14 +1,7 @@
 
 /* Called when the user pushes the "submit" button */
 /* Sends a request to the API using the JSONp protocol */
-// function chooseBooks() {
-// 	var overlay = document.getElementById("overlay");
-// 	overlay.style.display = "block";
-// 	var tileId = 0;
-// 	var overlayTile = document.getElementById(tileId);
-// 	overlay.replaceChild(overlayTile, overlay.childNodes[1]);
-//
-// }
+
 var book_counter = 0;
 var bookList;
 
@@ -102,19 +95,11 @@ function newRequest() {
 		// put new script into DOM at bottom of body
 		document.body.appendChild(script);
 		}
-
-
-
 }
-
 
 /* Used above, for joining possibly empty strings with pluses */
 function fancyJoin(a,b) {
     if (a == "") { return b; }	    else if (b == "") { return a; }    else { return a+"+"+b; }}
-
-function tile_func(i) {
-
-}
 
 /* The callback function, which gets run when the API returns the result of our query */
 /* Replace with your code! */
@@ -133,7 +118,7 @@ function getTile() {
 	var cover = book.volumeInfo.imageLinks.thumbnail;
 
 	var tile = document.createElement("div");
-	tile.class = "div1";
+	tile.setAttribute('class', 'div1');
 	tile.id = book_counter;
 
 	var coverPgh = document.createElement("img");
@@ -159,50 +144,9 @@ function getTile() {
 	first30desPgh.textContent = first30des;
 	subTile.append(first30desPgh);
 
+	if (tile > )
 	return tile;
 }
-
-function response(){
-	bookDisplay = document.getElementById("bookDisplay");
-
-	// var authorDisplay = document.getElementById("authorDisplay");
-	/* write each title as a new paragraph */
-	var book = bookList[book_counter];
-	var title = book.volumeInfo.title;
-	var author = book.volumeInfo.authors[0];
-	var descriptions = book.volumeInfo.description;
-	var cover = book.volumeInfo.imageLinks.thumbnail;
-	//
-	var tile = document.createElement("div");
-	// 		tile.style.display = "none";
-	tile.class = "div1";
-	tile.id = book_counter;
-	bookDisplay.append(tile);
-
-	var coverPgh = document.createElement("img");
-	coverPgh.src = cover;
-	tile.append(coverPgh);
-	//
-	var subTile = document.createElement("div");
-	subTile.setAttribute("class", "div2");
-	tile.append(subTile);
-	//
-	var titlePgh = document.createElement("p");
-	// 		/* ALWAYS AVOID using the innerHTML property */
-	titlePgh.textContent = title;
-	subTile.append(titlePgh);
-	//
-	var authorPgh = document.createElement("p");
-	authorPgh.textContent = author;
-	subTile.append(authorPgh);
-	//
-	var des = descriptions.split(" ", 30);
-	var first30des = des.join(" ") + ". . .";
-	var first30desPgh = document.createElement("p");
-	first30desPgh.textContent = first30des;
-	subTile.append(first30desPgh);
-}
-
 
 function off() {
     document.getElementById("overlay").style.display = "none";
@@ -216,7 +160,7 @@ function keep() {
 }
 
 function replace(){
-	var toBeReplaced = document.getElementById("overlay");
+	var toBeReplaced = document.getElementById("tileWrapOverlay");
 	var replacement = getTile();
 	var copy_replacement = replacement.cloneNode(true);
 	toBeReplaced.replaceChild(copy_replacement, toBeReplaced.childNodes[3]);
