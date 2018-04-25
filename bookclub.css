@@ -30,39 +30,41 @@ h1 {
 }
 
 #left {
-	display: none;
+	display: block;
+	visibility: hidden;
 }
-#Search{
+
+#Search {
 	padding: 30px;
 	margin-left: 70px;
 	font-size: x-large;
 }
 
-#place_holder{
+#place_holder {
 	display: flex;
 	flex-direction: row;
 	margin-left: 100px;
 	white-space: normal;
 }
 
-#holder_name{
+#holder_name {
 	display: flex;
 	flex-direction: row;
 	padding-left: 50px;
 	padding-right: 50px;
 }
-#Author{
+#Author {
 	width: 24%;
 	padding-left: 50px;
 	flex-direction: column;
 	display: flex;
 }
-#Title{
+#Title {
 	width: 24%;
 	flex-direction: column;
 	display: flex;
 }
-#ISBN{
+#ISBN {
 	width: 24%;
 	flex-direction: column;
 	display: flex;
@@ -110,12 +112,27 @@ p {
   cursor: pointer; /* Add a pointer on hover */
 }
 
+#off {
+	position: fixed;
+	top: 10%;
+	right: 10%;
+}
+
 div.div1 {
 	display: flex;
 	flex-direction: row;
 	background-color: green;
 	margin: 10px;
-	flex: 0 1 30%;
+	width: 400px;
+	height: 300px;
+	/* flex: 0 1 30%; */
+}
+
+#overTile {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
 }
 
 img {
@@ -134,10 +151,11 @@ img {
 
 #tileWrapOverlay {
 	display: flex;
-	justify-content: space-aroujnd;
 	padding: 30px;
+	margin-top: 15%;
+	flex-direction; row;
+	justify-content: space-around;
 }
-
 
 @media (max-width: 600px) {
 

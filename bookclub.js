@@ -166,37 +166,45 @@ function keep() {
 }
 
 function replace() {
-	var toBeReplaced = document.getElementById('tileWrapOverlay');
+	var toBeReplaced = document.getElementById('overTile');
 	var replacement = getTile();
 	var copy_replacement = replacement.cloneNode(true);
-	toBeReplaced.replaceChild(copy_replacement, toBeReplaced.childNodes[3]);
+	toBeReplaced.replaceChild(copy_replacement, toBeReplaced.childNodes[1]);
 
 }
 
 function left() {
 	if(book_counter == 0) {
 		document.getElementById(book_counter).style.display = 'none';
-		document.getElementById('left').style.display = 'none';
+		document.getElementById('left').style.visibility = 'hidden';
 	} else {
+		document.getElementById('left').style.visibility = 'visible';
+		document.getElementById('right').style.visibility = 'visible';
+
 		document.getElementById('right').style.display = 'block';
 		document.getElementById('left').style.display = 'block';
 		// document.getElementById(book_counter).style.display = 'none';
 		if (book_counter - 1 >= 0) {
 			book_counter = book_counter - 1;
 			if (book_counter == 0) {
-				document.getElementById('left').style.display = 'none';
+				document.getElementById('left').style.visibility = 'hidden';
 			}
 			replace();
 		}
 	}
 }
+		document.getElementById(book_counter).style.d
 
 function right() {
 		if(book_counter == bookList.length - 1 ) {
 			// document.getElementById(book_counter).style.display = 'none';
-			document.getElementById('right').style.display = 'none';
+			document.getElementById('right').style.visibility = 'hidden';
 		}
 		else{
+			document.getElementById('left').style.visibility = 'visible';
+			document.getElementById('right').style.visibility = 'visible';
+
+
 			document.getElementById('right').style.display = 'block';
 			document.getElementById('left').style.display = 'block';
 			// document.getElementById(book_counter).style.display = 'none';
@@ -204,7 +212,7 @@ function right() {
 				book_counter = book_counter + 1;
 				replace();
 				if (book_counter == bookList.length - 1) {
-					document.getElementById('right').style.display = 'none';
+					document.getElementById('right').style.visibility = 'hidden';
 				}
 			}
 		}
