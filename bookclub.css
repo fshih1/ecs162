@@ -147,6 +147,23 @@ div.div1 {
 	align-items: center;
 }
 
+.div2 {
+	color: black;
+}
+
+.title_tile {
+	/* bold + larger font*/
+}
+
+.title_author {
+	/* remember to add 'by" */
+	/* larger font */
+}
+
+.tile_description {
+	/* smaller but black*/
+}
+
 img {
 		display: flex;
 		height: 80%;

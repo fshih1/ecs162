@@ -1,4 +1,4 @@
-
+addButtonActions();
 /* Called when the user pushes the 'submit' button */
 /* Sends a request to the API using the JSONp protocol */
 
@@ -25,7 +25,7 @@ function transition() {
 	 });
 
 		// document.getElementsByTagName("main").style.background
-		document.body.style.backgroundColor = "#EDEDED";
+	 document.body.style.backgroundColor = "#EDEDED";
 
 	 document.getElementById('place_holder').style.marginLeft = '0px';
 	 document.getElementById('button').style.marginLeft = '0px';
@@ -114,6 +114,7 @@ function handleResponse(bookListObj) {
 	var overlay = document.getElementById('overlay');
 	overlay.style.display = 'block';
 	replace();
+
 }
 
 function getTile() {
@@ -136,17 +137,19 @@ function getTile() {
 	tile.append(subTile);
 	//
 	var titlePgh = document.createElement('p');
-	// 		/* ALWAYS AVOID using the innerHTML property */
+	titlePgh.class = 'tile_title';
 	titlePgh.textContent = title;
 	subTile.append(titlePgh);
 	//
 	var authorPgh = document.createElement('p');
+	authorPgh.class = 'tile_author';
 	authorPgh.textContent = author;
 	subTile.append(authorPgh);
 	//
 
 	if (descriptions == null) {
 		var emptyDescription = document.createElement('p');
+		emptyDescription.class = 'tile_description';
 		subTile.append(emptyDescription);
 		return tile;
 	}
@@ -162,12 +165,18 @@ function getTile() {
 
 function off() {
     document.getElementById('overlay').style.display = 'none';
+
 }
+
 
 function keep() {
 		var tileWrapper = document.getElementById('tileWrapper');
 		var cur_tile = getTile();
 		var button = document.createElement("button");
+		button.textContent = "DELETE";
+
+		button.setAttribute("class","deleteButton");
+		button.setAttribute("onclick","addButtonActions();");
 		cur_tile.append(button);
 		tileWrapper.append(cur_tile);
 }
@@ -175,6 +184,7 @@ function keep() {
 function replace() {
 	var toBeReplaced = document.getElementById('overTile');
 	var replacement = getTile();
+	replacement.id = replacement.id+'rep';
 	var copy_replacement = replacement.cloneNode(true);
 	toBeReplaced.replaceChild(copy_replacement, toBeReplaced.childNodes[1]);
 
@@ -223,4 +233,31 @@ function right() {
 				}
 			}
 		}
+}
+
+function disappear(ID) {
+	console.log("disappear!");
+	console.log(ID);
+	var Div = document.getElementById(ID);
+	Div.remove();
+}
+
+function addButtonActions() {
+console.log("addButtonActions!");
+	DivList = document.getElementById("tileWrapper");
+
+	for (let i=0; i<DivList.childElementCount; i++) {
+		theDiv = DivList.children[i];
+		theButton = theDiv.querySelector(".deleteButton");
+		theID = theDiv.id;
+
+		addOnclick(theButton,disappear,theID);
+	}
+}
+
+function addOnclick(element, func, param) {
+	function noarg() {
+		func(param);
+		}
+	element.onclick = noarg;  // it will remember its closure
 }
