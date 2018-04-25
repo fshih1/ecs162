@@ -174,9 +174,9 @@ function keep() {
 		var cur_tile = getTile();
 		var button = document.createElement("button");
 		button.textContent = "DELETE";
-
 		button.setAttribute("class","deleteButton");
 		button.setAttribute("onclick","addButtonActions();");
+		button.style.margin = "0px";
 		cur_tile.append(button);
 		tileWrapper.append(cur_tile);
 }
@@ -236,14 +236,14 @@ function right() {
 }
 
 function disappear(ID) {
-	console.log("disappear!");
-	console.log(ID);
+	// console.log("disappear!");
+	// console.log(ID);
 	var Div = document.getElementById(ID);
 	Div.remove();
 }
 
 function addButtonActions() {
-console.log("addButtonActions!");
+// console.log("addButtonActions!");
 	DivList = document.getElementById("tileWrapper");
 
 	for (let i=0; i<DivList.childElementCount; i++) {
