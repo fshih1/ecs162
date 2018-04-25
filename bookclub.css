@@ -137,7 +137,7 @@ div.div1 {
 	margin: 10px;
 	width: 400px;
 	height: 300px;
-	/* flex: 0 1 30%; */
+	align-items: center;
 }
 
 #overTile {
@@ -149,19 +149,23 @@ div.div1 {
 
 .div2 {
 	color: black;
+	height: 90%;
+	overflow: scroll;
 }
 
-.title_tile {
-	/* bold + larger font*/
+.tile_title {
+	font-weight: 600;
+	font-size: larger;
 }
 
-.title_author {
-	/* remember to add 'by" */
-	/* larger font */
+.tile_author {
+	font-weight: 400;
+	font-size: larger;
 }
 
 .tile_description {
-	/* smaller but black*/
+	font-weight: 400;
+	font-size: small;
 }
 
 img {
@@ -169,7 +173,7 @@ img {
 		height: 80%;
 		width: 50%;
 		flex-grow: 1;
-		padding: 10px;
+		padding: 15px;
 }
 
 #tileWrapper {

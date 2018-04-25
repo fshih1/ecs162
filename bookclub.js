@@ -137,19 +137,19 @@ function getTile() {
 	tile.append(subTile);
 	//
 	var titlePgh = document.createElement('p');
-	titlePgh.class = 'tile_title';
+	titlePgh.setAttribute('class', 'tile_title');
 	titlePgh.textContent = title;
 	subTile.append(titlePgh);
 	//
 	var authorPgh = document.createElement('p');
-	authorPgh.class = 'tile_author';
-	authorPgh.textContent = author;
+	authorPgh.setAttribute('class', 'tile_author');
+	authorPgh.textContent = 'By ' + author;
 	subTile.append(authorPgh);
 	//
 
 	if (descriptions == null) {
 		var emptyDescription = document.createElement('p');
-		emptyDescription.class = 'tile_description';
+		emptyDescription.setAttribute('class', 'tile_description');
 		subTile.append(emptyDescription);
 		return tile;
 	}
