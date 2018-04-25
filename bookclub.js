@@ -3,7 +3,7 @@
 /* Sends a request to the API using the JSONp protocol */
 
 var book_counter = 0;
-var bookList;
+// var bookList;
 
 function transition() {
 	var w = parseInt(window.innerWidth)
@@ -90,7 +90,7 @@ function newRequest() {
 
 		// build up complicated request URL
 		var beginning = 'https://www.googleapis.com/books/v1/volumes?q='
-		var callback = '&callback=handleResponse'
+		var callback = '&callback=newRequest.handleResponseM'
 
 		script.src = beginning+query+callback
 		script.id = 'jsonpCall';
@@ -98,6 +98,10 @@ function newRequest() {
 		// put new script into DOM at bottom of body
 		document.body.appendChild(script);
 		}
+
+	newRequest.handleResponseM = function(bookListObj) {
+		handleResponse(bookListObj, title, author, isbn);
+	}
 }
 
 /* Used above, for joining possibly empty strings with pluses */
@@ -106,11 +110,15 @@ function fancyJoin(a,b) {
 
 /* The callback function, which gets run when the API returns the result of our query */
 /* Replace with your code! */
-function handleResponse(bookListObj) {
-	bookList = bookListObj.items;
+function handleResponse(bookListObj, title, author, isbn) {
 	var overlay = document.getElementById('overlay');
 	overlay.style.display = 'block';
-	replace();
+	if (bookListObj.totalItems != 0) {
+		bookList = bookListObj.items;
+		replace();
+	} else {
+		error();
+	}
 }
 
 function getTile() {
@@ -164,8 +172,15 @@ function off() {
 function keep() {
 		var tileWrapper = document.getElementById('tileWrapper');
 		var cur_tile = getTile();
+		var button = document.createElement("button");
+		button.textContent = '&#10006';
+		button.class = 'closeTile';
+		button.onclick = 'remove()';
+		cur_tile.append(button);
 		tileWrapper.append(cur_tile);
-		// response();
+}
+
+function remove(element, func) {
 }
 
 function replace() {
@@ -173,7 +188,47 @@ function replace() {
 	var replacement = getTile();
 	var copy_replacement = replacement.cloneNode(true);
 	toBeReplaced.replaceChild(copy_replacement, toBeReplaced.childNodes[1]);
+}
 
+function error() {
+	var errorOverlay = document.createElement('div');
+	errorOverlay.id = 'errorOverlay';
+
+	var errorMsgs = document.createElement('div');
+	errorMsgs.id = 'errorMsgs';
+	errorOverlay.append(errorMsgs);
+
+	var msg = document.createElement('div');
+	errorMsgs.id = 'msg';
+	errorMsgs.append(msg);
+
+	var msg1 = document.createElement('p');
+	msg1.textContent = 'The book ';
+	var msgTitle = document.createElement('p');
+
+	msgTitle.append(title.textContent);
+	var msg2 = document.createElement('p');
+	msg2.textContent = ' by ';
+	var msgAuthor = document.createElement('p');
+	msgAuthor.append(author.textContent);
+	var msg3 = document.createElement('p');
+	msg3.textContent = ' ISBN number ';
+	var msgIsbn = document.createElement('p');
+	msgIsbn.append(isbn.textContent);
+	var msg4 = document.createElement('p');
+	msg4.textContent = ' Could not be found';
+
+	msg.append(msg1);
+	msg.append(msgTitle);
+	msg.append(msg2);
+	msg.append(msgAuthor);
+	msg.append(msg3);
+	msg.append(msgIsbn);
+	msg.append(msg4);
+
+
+	var overlay = document.getElementById('overlay');
+	overlay.replaceChild(errorOverlay, overlay.childNodes[1]);
 }
 
 function left() {
@@ -196,7 +251,7 @@ function left() {
 		}
 	}
 }
-		document.getElementById(book_counter).style.d
+		// document.getElementById(book_counter).style.d
 
 function right() {
 		if(book_counter == bookList.length - 1 ) {
