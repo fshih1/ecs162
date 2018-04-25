@@ -14,6 +14,7 @@ header {
        text-align: left;
        padding: 30px;
 			 white-space: nowrap;
+			 background-color: white;
 }
 
 
@@ -132,7 +133,7 @@ p {
 div.div1 {
 	display: flex;
 	flex-direction: row;
-	background-color: green;
+	background-color: white;
 	margin: 10px;
 	width: 400px;
 	height: 300px;
@@ -148,7 +149,8 @@ div.div1 {
 
 img {
 		display: flex;
-		height: auto;
+		height: 80%;
+		width: 50%;
 		flex-grow: 1;
 		padding: 10px;
 }

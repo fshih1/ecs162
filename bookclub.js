@@ -22,6 +22,9 @@ function transition() {
 				$('#button').appendTo('header');
 	 });
 
+		// document.getElementsByTagName("main").style.background
+		document.body.style.backgroundColor = "#EDEDED";
+
 	 document.getElementById('place_holder').style.marginLeft = '0px';
 	 document.getElementById('button').style.marginLeft = '0px';
 	 document.getElementById('button2').style.margin = '0px';
