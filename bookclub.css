@@ -170,6 +170,32 @@ img {
 	justify-content: center;
 }
 
+#errorOverlay {
+	/* display: flex; */
+	padding: 30px;
+	margin-top: 15%;
+	/* flex-direction; row; */
+	justify-content: center;
+}
+#errorMsgs {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	color: white;
+}
+#msg1 {
+	font-size: 30px;
+	font-weight: 400;
+}
+#msg2 {
+	font-size: 30px;
+	font-weight: 400;
+}
+b {
+	font-weight: 600;
+}
+
+
 @media (max-width: 600px) {
 
 

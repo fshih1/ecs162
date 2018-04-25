@@ -111,6 +111,8 @@ function fancyJoin(a,b) {
 /* The callback function, which gets run when the API returns the result of our query */
 /* Replace with your code! */
 function handleResponse(bookListObj, title, author, isbn) {
+
+	console.log(title);
 	var overlay = document.getElementById('overlay');
 	overlay.style.display = 'block';
 	if (bookListObj.totalItems != 0) {
@@ -188,6 +190,7 @@ function replace() {
 	var replacement = getTile();
 	var copy_replacement = replacement.cloneNode(true);
 	toBeReplaced.replaceChild(copy_replacement, toBeReplaced.childNodes[1]);
+	document.getElementById('off').style.display = 'block';
 }
 
 function error() {
@@ -196,36 +199,43 @@ function error() {
 
 	var errorMsgs = document.createElement('div');
 	errorMsgs.id = 'errorMsgs';
-	errorOverlay.append(errorMsgs);
 
-	var msg = document.createElement('div');
-	errorMsgs.id = 'msg';
-	errorMsgs.append(msg);
+	// var msg = document.createElement('div');
+	// errorMsgs.id = 'msg';
+	// errorMsgs.append(msg);
+	var inline_title = document.createElement('b');
+	inline_title.textContent = title.value;
+	var inline_author = document.createElement('b');
+	inline_author.textContent = author.value;
+	var inline_isbn = document.createElement('b');
+	inline_isbn.textContent = isbn.value;
 
 	var msg1 = document.createElement('p');
+	msg1.id = 'msg1';
 	msg1.textContent = 'The book ';
-	var msgTitle = document.createElement('p');
+	msg1.append(inline_title);
+	msg1.append(' by ');
+	msg1.append(inline_author);
+	msg1.append(' or ISBN ');
+	msg1.append(inline_isbn);
+	msg1.append(' could not be found.');
 
-	msgTitle.append(title.textContent);
 	var msg2 = document.createElement('p');
-	msg2.textContent = ' by ';
-	var msgAuthor = document.createElement('p');
-	msgAuthor.append(author.textContent);
-	var msg3 = document.createElement('p');
-	msg3.textContent = ' ISBN number ';
-	var msgIsbn = document.createElement('p');
-	msgIsbn.append(isbn.textContent);
-	var msg4 = document.createElement('p');
-	msg4.textContent = ' Could not be found';
+	msg2.id = 'msg2';
+	msg2.textContent = 'Try another search.';
 
-	msg.append(msg1);
-	msg.append(msgTitle);
-	msg.append(msg2);
-	msg.append(msgAuthor);
-	msg.append(msg3);
-	msg.append(msgIsbn);
-	msg.append(msg4);
+	errorMsgs.append(msg1);
+	errorMsgs.append(msg2);
 
+	var ok = document.createElement('button');
+	ok.setAttribute('onclick', 'off()');
+	ok.textContent = 'OK';
+	ok.id = 'OK';
+
+	errorOverlay.append(errorMsgs);
+	errorOverlay.append(ok);
+
+	document.getElementById('off').style.display = 'none';
 
 	var overlay = document.getElementById('overlay');
 	overlay.replaceChild(errorOverlay, overlay.childNodes[1]);
