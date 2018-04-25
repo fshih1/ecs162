@@ -17,6 +17,8 @@ function transition() {
 		var header = document.getElementById('header');
 		header.style.display = 'flex';
 
+
+
 		$(document).ready(function() {
 				$('#place_holder').appendTo('header');
 				$('#button').appendTo('header');
@@ -32,6 +34,7 @@ function transition() {
 	else{
 		var head = document.getElementById('book_club');
 		// head.style.width = '90%';
+		document.getElementById("main").style.backgroundColor = "#EDEDED";
 
 		var header = document.getElementById('header');
 		head.style.display = 'flex';
@@ -164,8 +167,9 @@ function off() {
 function keep() {
 		var tileWrapper = document.getElementById('tileWrapper');
 		var cur_tile = getTile();
+		var button = document.createElement("button");
+		cur_tile.append(button);
 		tileWrapper.append(cur_tile);
-		// response();
 }
 
 function replace() {
@@ -196,7 +200,7 @@ function left() {
 		}
 	}
 }
-		document.getElementById(book_counter).style.d
+
 
 function right() {
 		if(book_counter == bookList.length - 1 ) {

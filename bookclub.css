@@ -126,8 +126,8 @@ p {
 
 #off {
 	position: fixed;
-	top: 20%;
 	right: 10%;
+	top: 30px;
 }
 
 div.div1 {
@@ -173,60 +173,67 @@ img {
 @media (max-width: 600px) {
 
 
-#Search {
-	padding: 30px;
-	margin-left: 0px;
-	font-size: x-large;
-}
+	#Search {
+		padding: 30px;
+		margin-left: 0px;
+		font-size: x-large;
+	}
 
-#place_holder {
-	display: flex;
-	flex-direction: column;
-	margin-left: 30px;
-	white-space: normal;
-}
+	#place_holder {
+		display: flex;
+		flex-direction: column;
+		margin-left: 30px;
+		white-space: normal;
+	}
 
-#Author {
-	width: auto;
-	padding-left: 0px;
-	flex-direction: column;
-	display: flex;
-	padding-right: 20px;
-	margin: 10px;
-}
+	#Author {
+		width: auto;
+		padding-left: 0px;
+		flex-direction: column;
+		display: flex;
+		padding-right: 20px;
+		margin: 10px;
+	}
 
-#Title {
-	width: auto;
-	padding-left: 0px;
-	flex-direction: column;
-	display: flex;
-	padding-right: 20px;
-	margin: 10px;
-}
+	#Title {
+		width: auto;
+		padding-left: 0px;
+		flex-direction: column;
+		display: flex;
+		padding-right: 20px;
+		margin: 10px;
+	}
 
-#ISBN {
-	width: auto;
-	padding-left: 0px;
-	flex-direction: column;
-	display: flex;
-	padding-right: 20px;
-	margin: 10px;
-}
+	#ISBN {
+		width: auto;
+		padding-left: 0px;
+		flex-direction: column;
+		display: flex;
+		padding-right: 20px;
+		margin: 10px;
+	}
 
-button {
-	width: auto;
-	margin: 10px;
-}
+	button {
+		width: auto;
+		margin: 10px;
+	}
 
-#header {
-	display: flex;
-	justify-content: space-around;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-}
+	#header {
+		display: flex;
+		justify-content: space-around;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+	}
 
-h1 {
-	font-size: 40px;
-	font-weight: bold;
+	h1 {
+		font-size: 40px;
+		font-weight: bold;
+	}
+
+	#overTile {
+		width:80%;
+	}
+
+
 }
