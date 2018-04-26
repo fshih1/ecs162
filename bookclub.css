@@ -159,8 +159,8 @@ b {
 
 #off {
 	position: fixed;
-	right: 10%;
-	top: 30px;
+	right: 1%;
+	top: 60px;
 }
 
 div.div1 {
@@ -213,12 +213,13 @@ img {
 
 .or{
 	text-align: center;
+	font-weight: bold;
 }
 
 #tileWrapper {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around;
+	justify-content: flex-start;
 	padding: 10px;
 }
 
