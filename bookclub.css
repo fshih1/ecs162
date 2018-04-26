@@ -143,8 +143,15 @@ p {
 	margin-top: 10%;
 	color: white;
 	font-weight: 400;
+	align-items: center;
 }
 
+#msg1 {
+	font-size: 30px;
+}
+#msg2 {
+	font-size: 30px;
+}
 b {
 	font-weight: 600;
 }
@@ -162,7 +169,7 @@ div.div1 {
 	margin: 10px;
 	width: 400px;
 	height: 300px;
-	align-items: center;
+	/* align-items: center; */
 }
 
 #overTile {
