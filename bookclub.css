@@ -135,10 +135,11 @@ p {
 	flex-direction: column;
 	margin-top: 10%;
 	color: white;
-	font-weight = 400;
+	font-weight: 400;
 }
+
 b {
-	font-weight = 600;
+	font-weight: 600;
 }
 
 #off {
