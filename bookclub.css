@@ -107,6 +107,7 @@ main {
 
 input {
 	border-style: solid;
+	border-color: #4A73FF;
 	border-radius: 5px;
 	font-size: medium;
 }
@@ -183,6 +184,7 @@ div.div1 {
 	color: black;
 	height: 90%;
 	overflow: scroll;
+	align-self: center;
 }
 
 .tile_title {
@@ -206,6 +208,7 @@ img {
 		width: 32%;
 		flex-grow: 1;
 		padding: 15px;
+		align-self: center;
 }
 
 .or{

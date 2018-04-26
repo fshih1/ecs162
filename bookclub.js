@@ -183,7 +183,7 @@ function keep() {
 		var tileWrapper = document.getElementById('tileWrapper');
 		var cur_tile = getTile();
 		var button = document.createElement("button");
-		button.textContent = "DELETE";
+		button.textContent = "X";
 		button.setAttribute("class","deleteButton");
 		button.setAttribute("onclick","addButtonActions();");
 		button.style.margin = "0px";
