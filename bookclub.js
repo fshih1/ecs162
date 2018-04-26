@@ -1,48 +1,54 @@
-
-/* Called when the user pushes the "submit" button */
+addButtonActions();
+/* Called when the user pushes the 'submit' button */
 /* Sends a request to the API using the JSONp protocol */
 
+var book_counter = 0;
+// var bookList;
 
-function transition(){
+function transition() {
 	var w = parseInt(window.innerWidth)
 	if(w  > 600){
-		var text = document.getElementById("Search");
-		text.style.display = "none";
+		var text = document.getElementById('Search');
+		text.style.display = 'none';
 
-		var head = document.getElementById("book_club");
-		head.style.width = "10%";
+		var head = document.getElementById('book_club');
+		head.style.width = '10%';
 
-		var header = document.getElementById("header");
-		header.style.display = "flex";
+		var header = document.getElementById('header');
+		header.style.display = 'flex';
 
 		$(document).ready(function() {
-				$("#place_holder").appendTo("header");
-				$("#button").appendTo("header");
+				$('#place_holder').appendTo('header');
+				$('#button').appendTo('header');
 	 });
 
-	 document.getElementById("place_holder").style.marginLeft = "0px";
-	 document.getElementById("button").style.marginLeft = "0px";
-	 document.getElementById("button2").style.margin = "0px";
+		// document.getElementsByTagName("main").style.background
+	 document.body.style.backgroundColor = "#EDEDED";
+
+	 document.getElementById('place_holder').style.marginLeft = '0px';
+	 document.getElementById('button').style.marginLeft = '0px';
+	 document.getElementById('button2').style.margin = '0px';
 	}
 	else{
-		var head = document.getElementById("book_club");
-		// head.style.width = "90%";
+		var head = document.getElementById('book_club');
+		// head.style.width = '90%';
+		document.getElementById("main").style.backgroundColor = "#EDEDED";
 
-		var header = document.getElementById("header");
-		head.style.display = "flex";
+		var header = document.getElementById('header');
+		head.style.display = 'flex';
 
-		var text = document.getElementById("Search");
-		text.style.display = "none";
+		var text = document.getElementById('Search');
+		text.style.display = 'none';
 
-		var placeHolder = document.getElementById("place_holder");
-		placeHolder.style.display = "none";
+		var placeHolder = document.getElementById('place_holder');
+		placeHolder.style.display = 'none';
 
-		var button = document.getElementById("button");
-		button.style.display = "none";
+		var button = document.getElementById('button');
+		button.style.display = 'none';
 
-		var sign = document.getElementById("sign");
-		sign.style.width="10%";
-		sign.style.display = "flex";
+		var sign = document.getElementById('sign');
+		sign.style.width='10%';
+		sign.style.display = 'flex';
 	}
 
 
@@ -50,33 +56,33 @@ function transition(){
 
 function newRequest() {
 
-	var author = document.getElementById("author").value;
+	var author = document.getElementById('author').value;
 	author = author.trim();
-	author = author.replace(" ","+");
+	author = author.replace(' ','+');
 
-	var title = document.getElementById("title").value;
+	var title = document.getElementById('title').value;
 	title = title.trim();
-	title = title.replace(" ","+");
+	title = title.replace(' ','+');
 
-	var isbn = document.getElementById("isbn").value;
+	var isbn = document.getElementById('isbn').value;
 	isbn = isbn.trim();
-	isbn = isbn.replace("-","");
+	isbn = isbn.replace('-','');
 
-	var description = document.getElementById("description");
-	if(description != null){
+	var description = document.getElementById('description');
+	if(description != null) {
 		description = description.trim();
 	}
 
 	// Connects possible query parts with pluses
-	var query = ["",title,author,isbn].reduce(fancyJoin);
+	var query = ['',title,author,isbn].reduce(fancyJoin);
 
 	// The JSONp part.  Query is executed by appending a request for a new
 	// Javascript library to the DOM.  It's URL is the URL for the query.
 	// The library returned just calls the callback function we specify, with
 	// the JSON data we want as an argument.
-	if (query != "") {
+	if (query != '') {
 		// remove old script
-		var oldScript = document.getElementById("jsonpCall");
+		var oldScript = document.getElementById('jsonpCall');
 		if (oldScript != null) {
 			document.body.removeChild(oldScript);
 		}
@@ -84,67 +90,213 @@ function newRequest() {
 		var script = document.createElement('script');
 
 		// build up complicated request URL
-		var beginning = "https://www.googleapis.com/books/v1/volumes?q="
-		var callback = "&callback=handleResponse"
+		var beginning = 'https://www.googleapis.com/books/v1/volumes?q='
+		var callback = '&callback=newRequest.handleResponseM'
 
 		script.src = beginning+query+callback
-		script.id = "jsonpCall";
+		script.id = 'jsonpCall';
 
 		// put new script into DOM at bottom of body
 		document.body.appendChild(script);
 		}
 
-
-
+	newRequest.handleResponseM = function(bookListObj) {
+		handleResponse(bookListObj, title, author, isbn);
+	}
 }
-
 
 /* Used above, for joining possibly empty strings with pluses */
 function fancyJoin(a,b) {
-    if (a == "") { return b; }	    else if (b == "") { return a; }    else { return a+"+"+b; }}
+    if (a == '') { return b; }	    else if (b == '') { return a; }    else { return a+'+'+b; }}
 
 /* The callback function, which gets run when the API returns the result of our query */
 /* Replace with your code! */
-function handleResponse(bookListObj) {
-	var bookList = bookListObj.items;
+function handleResponse(bookListObj, title, author, isbn) {
+	// console.log(title);
+	if (bookListObj.totalItems != 0) {
+		var overlay = document.getElementById('overlay');
+		overlay.style.display = 'block';
+		bookList = bookListObj.items;
+		replace();
+	} else {
+		var errorOverlay = document.getElementById('errorWrapOverlay');
+		errorOverlay.style.display = 'block';
+		error();
+	}
+}
 
-	/* where to put the data on the Web page */
-	var bookDisplay = document.getElementById("bookDisplay");
-	// var authorDisplay = document.getElementById("authorDisplay");
+function getTile() {
+	var book = bookList[book_counter];
+	var title = book.volumeInfo.title;
+	var author = book.volumeInfo.authors[0];
+	var descriptions = book.volumeInfo.description;
+	var cover = book.volumeInfo.imageLinks.thumbnail;
 
-	/* write each title as a new paragraph */
-	for (i=0; i<bookList.length; i++) {
-			var book = bookList[i];
-			var title = book.volumeInfo.title;
-			var author = book.volumeInfo.authors[0];
-			var description = book.volumeInfo.description;
-			var cover = book.volumeInfo.imageLinks.thumbnail;
+	var tile = document.createElement('div');
+	tile.setAttribute('class', 'div1');
+	tile.id = book_counter;
 
-			var tile = document.createElement("div");
-			tile.setAttribute("id", "div1");
-			bookDisplay.append(tile);
+	var coverPgh = document.createElement('img');
+	coverPgh.src = cover;
+	tile.append(coverPgh);
+	//
+	var subTile = document.createElement('div');
+	subTile.setAttribute('class', 'div2');
+	tile.append(subTile);
+	//
+	var titlePgh = document.createElement('p');
+	titlePgh.setAttribute('class', 'tile_title');
+	titlePgh.textContent = title;
+	subTile.append(titlePgh);
+	//
+	var authorPgh = document.createElement('p');
+	authorPgh.setAttribute('class', 'tile_author');
+	authorPgh.textContent = 'By ' + author;
+	subTile.append(authorPgh);
+	//
 
-			var coverPgh = document.createElement("img");
-			coverPgh.src = cover;
-			tile.append(coverPgh);
+	if (descriptions == null) {
+		var emptyDescription = document.createElement('p');
+		emptyDescription.setAttribute('class', 'tile_description');
+		subTile.append(emptyDescription);
+		return tile;
+	}
 
-			var subTile = document.createElement("div");
-			subTile.setAttribute("id", "div2");
-			tile.append(subTile);
+	var des = descriptions.split(' ', 30);
+	var first30des = des.join(' ') + '. . .';
+	var first30desPgh = document.createElement('p');
+	first30desPgh.textContent = first30des;
+	subTile.append(first30desPgh);
 
-			var titlePgh = document.createElement("p");
-			/* ALWAYS AVOID using the innerHTML property */
-			titlePgh.textContent = title;
-			subTile.append(titlePgh);
+	return tile;
+}
 
-			var authorPgh = document.createElement("p");
-			authorPgh.textContent = author;
-			subTile.append(authorPgh);
+function overlayOff() {
+  document.getElementById('overlay').style.display = 'none';
+}
+function errorOff() {
+	document.getElementById('errorWrapOverlay').style.display = 'none';
+}
 
-			var des = description.split(" ", 30);
-			var first30des = des.join(" ") + ". . .";
-			var first30desPgh = document.createElement("p");
-			first30desPgh.textContent = first30des;
-			subTile.append(first30desPgh);
+
+function keep() {
+		var tileWrapper = document.getElementById('tileWrapper');
+		var cur_tile = getTile();
+		var button = document.createElement("button");
+		button.textContent = "DELETE";
+
+		button.setAttribute("class","deleteButton");
+		button.setAttribute("onclick","addButtonActions();");
+		cur_tile.append(button);
+		tileWrapper.append(cur_tile);
+}
+
+function replace() {
+	var toBeReplaced = document.getElementById('overTile');
+	var replacement = getTile();
+	replacement.id = replacement.id+'rep';
+	var copy_replacement = replacement.cloneNode(true);
+	toBeReplaced.replaceChild(copy_replacement, toBeReplaced.childNodes[1]);
+	document.getElementById('off').style.display = 'block';
+}
+
+function error() {
+	var errorOverlay = document.getElementById('errorWrapOverlay');
+
+	var inline_title = document.createElement('b');
+	inline_title.textContent = title.value;
+	var inline_author = document.createElement('b');
+	inline_author.textContent = author.value;
+	var inline_isbn = document.createElement('b');
+	inline_isbn.textContent = isbn.value;
+
+	if(inline_title.textContent == '')
+		inline_title.textContent = 'Title';
+	if(inline_author.textContent == '')
+		inline_author.textContent = 'Author';
+	if(inline_isbn.textContent == '')
+		inline_isbn.textContent = '000-0-00-000000-0';
+
+	var msg1 = document.getElementById('msg1');
+	msg1.textContent = 'The book ';
+	msg1.append(inline_title);
+	msg1.append(' by ');
+	msg1.append(inline_author);
+	msg1.append(' or ISBN ');
+	msg1.append(inline_isbn);
+	msg1.append(' Could not be found.');
+
+
+	// document.getElementById('off').style.display = 'none';
+}
+
+function left() {
+	if(book_counter == 0) {
+		document.getElementById(book_counter).style.display = 'none';
+		document.getElementById('left').style.visibility = 'hidden';
+	} else {
+		document.getElementById('left').style.visibility = 'visible';
+		document.getElementById('right').style.visibility = 'visible';
+
+		document.getElementById('right').style.display = 'block';
+		document.getElementById('left').style.display = 'block';
+		// document.getElementById(book_counter).style.display = 'none';
+		if (book_counter - 1 >= 0) {
+			book_counter = book_counter - 1;
+			if (book_counter == 0) {
+				document.getElementById('left').style.visibility = 'hidden';
+			}
+			replace();
 		}
+	}
+}
+
+
+function right() {
+		if(book_counter == bookList.length - 1 ) {
+			// document.getElementById(book_counter).style.display = 'none';
+			document.getElementById('right').style.visibility = 'hidden';
+		}
+		else{
+			document.getElementById('left').style.visibility = 'visible';
+			document.getElementById('right').style.visibility = 'visible';
+
+
+			document.getElementById('right').style.display = 'block';
+			document.getElementById('left').style.display = 'block';
+			// document.getElementById(book_counter).style.display = 'none';
+			if(book_counter + 1 <= bookList.length) {
+				book_counter = book_counter + 1;
+				replace();
+				if (book_counter == bookList.length - 1) {
+					document.getElementById('right').style.visibility = 'hidden';
+				}
+			}
+		}
+}
+
+function disappear(ID) {
+	console.log("disappear!");
+	console.log(ID);
+	var Div = document.getElementById(ID);
+	Div.remove();
+}
+
+function addButtonActions() {
+	DivList = document.getElementById("tileWrapper");
+
+	for (let i=0; i<DivList.childElementCount; i++) {
+		theDiv = DivList.children[i];
+		theButton = theDiv.querySelector(".deleteButton");
+		theID = theDiv.id;
+
+		addOnclick(theButton,disappear,theID);
+	}
+}
+
+function addOnclick(element, func, param) {
+	function noarg() {
+		func(param);
+		}
+	element.onclick = noarg;  // it will remember its closure
 }
