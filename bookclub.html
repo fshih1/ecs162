@@ -6,17 +6,20 @@
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" type="text/css" href="reset.css">
 <link rel="stylesheet" type="text/css" href="bookclub.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
 </head>
 
 <body>
+
     <header id="header">
         <h1 id="book_club">BOOK CLUB</h1>
-        <div id="sign"> &#128269 </div>
+        <div id="sign" onclick="location.reload();"> &#128269 </div>
     </header>
 
 <main id="main">
+
     <div class="OverlayClass" id="overlay" >
         <div id="tileWrapOverlay">
             <button class="arrow" onclick="left()" id = "left"> &#8592 </button>
@@ -45,12 +48,12 @@
             Author
             <input id="author" placeholder="ex William Shakespeare">
         </div>
-        <p>or</p>
+        <p class="or">or</p>
         <div id = "Title">
             Title
             <input id="title" placeholder="ex Romeo and Juliet">
         </div>
-        <p>or</p>
+        <p class="or">or</p>
         <div id = "ISBN">
             ISBN
             <input id="isbn" placeholder="XXXXXXXXXX or XXX-XXXXXXXXXX">

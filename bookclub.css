@@ -15,10 +15,14 @@ header {
        padding: 30px;
 			 white-space: nowrap;
 			 background-color: white;
-			 flex-direction: row;
+			 flex-direction; row;
 			 justify-content: space-between;
 }
 
+#keep{
+	background-color: #4A73FF;
+	color:white;
+}
 
 h1 {
    font-size: x-large;
@@ -79,9 +83,10 @@ h1 {
 }
 
 button{
-	width: 100px;
-	height: 50px;
+	width: 80px;
+	height: 37px;
 	text-align: -moz-center;
+	margin: 20px;
 }
 
 .arrow{
@@ -110,6 +115,8 @@ input {
 p {
 	font-size: medium;
 	margin: 10px;
+	text-align: left;
+	/* font-weight: bold; */
 }
 
 .OverlayClass {
@@ -188,10 +195,14 @@ div.div1 {
 
 img {
 		display: flex;
-		height: 80%;
-		width: 50%;
+		height: 66%;
+		width: 32%;
 		flex-grow: 1;
 		padding: 15px;
+}
+
+.or{
+	text-align: center;
 }
 
 #tileWrapper {
@@ -204,9 +215,15 @@ img {
 #tileWrapOverlay {
 	display: flex;
 	padding: 30px;
-	margin-top: 10%;
+	margin-top: 15%;
 	flex-direction; row;
 	justify-content: center;
+}
+
+#button2{
+	background-color: #4A73FF;
+	color:white;
+
 }
 
 @media (max-width: 600px) {
@@ -256,6 +273,9 @@ img {
 		width: auto;
 		margin: 10px;
 	}
+
+
+
 
 	#header {
 		display: flex;

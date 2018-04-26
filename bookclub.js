@@ -3,7 +3,7 @@ addButtonActions();
 /* Sends a request to the API using the JSONp protocol */
 
 var book_counter = 0;
-// var bookList;
+var bookList;
 
 function transition() {
 	var w = parseInt(window.innerWidth)
@@ -16,6 +16,8 @@ function transition() {
 
 		var header = document.getElementById('header');
 		header.style.display = 'flex';
+
+
 
 		$(document).ready(function() {
 				$('#place_holder').appendTo('header');
@@ -91,7 +93,7 @@ function newRequest() {
 
 		// build up complicated request URL
 		var beginning = 'https://www.googleapis.com/books/v1/volumes?q='
-		var callback = '&callback=newRequest.handleResponseM'
+		var callback = '&callback=handleResponse'
 
 		script.src = beginning+query+callback
 		script.id = 'jsonpCall';
@@ -99,10 +101,9 @@ function newRequest() {
 		// put new script into DOM at bottom of body
 		document.body.appendChild(script);
 		}
-
-	newRequest.handleResponseM = function(bookListObj) {
-		handleResponse(bookListObj, title, author, isbn);
-	}
+		newRequest.handleResponseM = function(bookListObj) {
+			handleResponse(bookListObj, title, author, isbn);
+		}
 }
 
 /* Used above, for joining possibly empty strings with pluses */
@@ -178,15 +179,14 @@ function errorOff() {
 	document.getElementById('errorWrapOverlay').style.display = 'none';
 }
 
-
 function keep() {
 		var tileWrapper = document.getElementById('tileWrapper');
 		var cur_tile = getTile();
 		var button = document.createElement("button");
 		button.textContent = "DELETE";
-
 		button.setAttribute("class","deleteButton");
 		button.setAttribute("onclick","addButtonActions();");
+		button.style.margin = "0px";
 		cur_tile.append(button);
 		tileWrapper.append(cur_tile);
 }
@@ -225,8 +225,6 @@ function error() {
 	msg1.append(' or ISBN ');
 	msg1.append(inline_isbn);
 	msg1.append(' Could not be found.');
-
-
 	// document.getElementById('off').style.display = 'none';
 }
 
@@ -276,13 +274,14 @@ function right() {
 }
 
 function disappear(ID) {
-	console.log("disappear!");
-	console.log(ID);
+	// console.log("disappear!");
+	// console.log(ID);
 	var Div = document.getElementById(ID);
 	Div.remove();
 }
 
 function addButtonActions() {
+// console.log("addButtonActions!");
 	DivList = document.getElementById("tileWrapper");
 
 	for (let i=0; i<DivList.childElementCount; i++) {
