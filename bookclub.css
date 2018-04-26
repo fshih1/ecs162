@@ -15,12 +15,10 @@ header {
        padding: 30px;
 			 white-space: nowrap;
 			 background-color: white;
+			 flex-direction: row;
+			 justify-content: space-between;
 }
 
-#keep{
-	background-color: #4A73FF;
-	color:white;
-}
 
 h1 {
    font-size: x-large;
@@ -81,10 +79,9 @@ h1 {
 }
 
 button{
-	width: 80px;
-	height: 37px;
+	width: 100px;
+	height: 50px;
 	text-align: -moz-center;
-	margin: 20px;
 }
 
 .arrow{
@@ -113,11 +110,9 @@ input {
 p {
 	font-size: medium;
 	margin: 10px;
-	text-align: left;
-	font-weight: bold;
 }
 
-#overlay {
+.OverlayClass {
 	position: fixed; /* Sit on top of the page content */
   display: none; /* Hidden by default */
   width: 100%; /* Full width (cover the whole page) */
@@ -129,6 +124,21 @@ p {
   background-color: rgba(0,0,0,0.7); /* Black background with opacity */
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
   cursor: pointer; /* Add a pointer on hover */
+}
+
+#errorWrapOverlay {
+	display: none;
+}
+
+#errors {
+	display: flex;
+	flex-direction: column;
+	margin-top: 10%;
+	color: white;
+	font-weight = 400;
+}
+b {
+	font-weight = 600;
 }
 
 #off {
@@ -144,7 +154,7 @@ div.div1 {
 	margin: 10px;
 	width: 400px;
 	height: 300px;
-	/* align-items: center; */
+	align-items: center;
 }
 
 #overTile {
@@ -177,15 +187,12 @@ div.div1 {
 
 img {
 		display: flex;
-		height: 66%;
-		width: 32%;
+		height: 80%;
+		width: 50%;
 		flex-grow: 1;
 		padding: 15px;
 }
 
-.or{
-	text-align: center;
-}
 #tileWrapper {
 	display: flex;
 	flex-wrap: wrap;
@@ -196,15 +203,9 @@ img {
 #tileWrapOverlay {
 	display: flex;
 	padding: 30px;
-	margin-top: 15%;
+	margin-top: 10%;
 	flex-direction; row;
 	justify-content: center;
-}
-
-#button2{
-	background-color: #4A73FF;
-	color:white;
-
 }
 
 @media (max-width: 600px) {
@@ -254,9 +255,6 @@ img {
 		width: auto;
 		margin: 10px;
 	}
-
-
-
 
 	#header {
 		display: flex;

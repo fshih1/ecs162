@@ -3,7 +3,7 @@ addButtonActions();
 /* Sends a request to the API using the JSONp protocol */
 
 var book_counter = 0;
-var bookList;
+// var bookList;
 
 function transition() {
 	var w = parseInt(window.innerWidth)
@@ -16,8 +16,6 @@ function transition() {
 
 		var header = document.getElementById('header');
 		header.style.display = 'flex';
-
-
 
 		$(document).ready(function() {
 				$('#place_holder').appendTo('header');
@@ -93,7 +91,7 @@ function newRequest() {
 
 		// build up complicated request URL
 		var beginning = 'https://www.googleapis.com/books/v1/volumes?q='
-		var callback = '&callback=handleResponse'
+		var callback = '&callback=newRequest.handleResponseM'
 
 		script.src = beginning+query+callback
 		script.id = 'jsonpCall';
@@ -101,6 +99,10 @@ function newRequest() {
 		// put new script into DOM at bottom of body
 		document.body.appendChild(script);
 		}
+
+	newRequest.handleResponseM = function(bookListObj) {
+		handleResponse(bookListObj, title, author, isbn);
+	}
 }
 
 /* Used above, for joining possibly empty strings with pluses */
@@ -109,12 +111,18 @@ function fancyJoin(a,b) {
 
 /* The callback function, which gets run when the API returns the result of our query */
 /* Replace with your code! */
-function handleResponse(bookListObj) {
-	bookList = bookListObj.items;
-	var overlay = document.getElementById('overlay');
-	overlay.style.display = 'block';
-	replace();
-
+function handleResponse(bookListObj, title, author, isbn) {
+	// console.log(title);
+	if (bookListObj.totalItems != 0) {
+		var overlay = document.getElementById('overlay');
+		overlay.style.display = 'block';
+		bookList = bookListObj.items;
+		replace();
+	} else {
+		var errorOverlay = document.getElementById('errorWrapOverlay');
+		errorOverlay.style.display = 'block';
+		error();
+	}
 }
 
 function getTile() {
@@ -163,9 +171,11 @@ function getTile() {
 	return tile;
 }
 
-function off() {
-    document.getElementById('overlay').style.display = 'none';
-
+function overlayOff() {
+  document.getElementById('overlay').style.display = 'none';
+}
+function errorOff() {
+	document.getElementById('errorWrapOverlay').style.display = 'none';
 }
 
 
@@ -174,9 +184,9 @@ function keep() {
 		var cur_tile = getTile();
 		var button = document.createElement("button");
 		button.textContent = "DELETE";
+
 		button.setAttribute("class","deleteButton");
 		button.setAttribute("onclick","addButtonActions();");
-		button.style.margin = "0px";
 		cur_tile.append(button);
 		tileWrapper.append(cur_tile);
 }
@@ -187,7 +197,37 @@ function replace() {
 	replacement.id = replacement.id+'rep';
 	var copy_replacement = replacement.cloneNode(true);
 	toBeReplaced.replaceChild(copy_replacement, toBeReplaced.childNodes[1]);
+	document.getElementById('off').style.display = 'block';
+}
 
+function error() {
+	var errorOverlay = document.getElementById('errorWrapOverlay');
+
+	var inline_title = document.createElement('b');
+	inline_title.textContent = title.value;
+	var inline_author = document.createElement('b');
+	inline_author.textContent = author.value;
+	var inline_isbn = document.createElement('b');
+	inline_isbn.textContent = isbn.value;
+
+	if(inline_title.textContent == '')
+		inline_title.textContent = 'Title';
+	if(inline_author.textContent == '')
+		inline_author.textContent = 'Author';
+	if(inline_isbn.textContent == '')
+		inline_isbn.textContent = '000-0-00-000000-0';
+
+	var msg1 = document.getElementById('msg1');
+	msg1.textContent = 'The book ';
+	msg1.append(inline_title);
+	msg1.append(' by ');
+	msg1.append(inline_author);
+	msg1.append(' or ISBN ');
+	msg1.append(inline_isbn);
+	msg1.append(' Could not be found.');
+
+
+	// document.getElementById('off').style.display = 'none';
 }
 
 function left() {
@@ -236,14 +276,13 @@ function right() {
 }
 
 function disappear(ID) {
-	// console.log("disappear!");
-	// console.log(ID);
+	console.log("disappear!");
+	console.log(ID);
 	var Div = document.getElementById(ID);
 	Div.remove();
 }
 
 function addButtonActions() {
-// console.log("addButtonActions!");
 	DivList = document.getElementById("tileWrapper");
 
 	for (let i=0; i<DivList.childElementCount; i++) {
