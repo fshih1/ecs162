@@ -15,7 +15,7 @@ header {
        padding: 30px;
 			 white-space: nowrap;
 			 background-color: white;
-			 flex-direction; row;
+			 flex-direction: row;
 			 justify-content: space-between;
 }
 
@@ -227,7 +227,7 @@ img {
 	display: flex;
 	padding: 30px;
 	margin-top: 15%;
-	flex-direction; row;
+	flex-direction: row;
 	justify-content: center;
 }
 

@@ -1,5 +1,5 @@
 <!doctype HTML>
-<html>
+<html lang="en">
 <head>
 <title>Make a Book List</title>
 <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="reset.css">
 <link rel="stylesheet" type="text/css" href="bookclub.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script> -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
 </head>
 
@@ -15,19 +15,19 @@
 
     <header id="header">
         <h1 id="book_club">BOOK CLUB</h1>
-        <div id="sign" onclick="location.reload();"> &#128269 </div>
+        <div id="sign" onclick="location.reload();"> &#128269; </div>
     </header>
 
 <main id="main">
 
     <div class="OverlayClass" id="overlay" >
         <div id="tileWrapOverlay">
-            <button class="arrow" onclick="left()" id = "left"> &#8592 </button>
+            <button class="arrow" onclick="left()" id = "left"> &#8592; </button>
             <div id="overTile">
                 <div id="mainTile"></div>
                 <button id="keep" onclick="keep()"> keep </button>
             </div>
-            <button class="arrow" onclick="right()" id = "right"> &#8594 </button>
+            <button class="arrow" onclick="right()" id = "right"> &#8594; </button>
         </div>
         <button id="off" onclick="addButtonActions();overlayOff();"> close </button>
     </div>
