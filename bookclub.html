@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="reset.css">
 <link rel="stylesheet" type="text/css" href="bookclub.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script> -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
 </head>
 
@@ -25,7 +25,7 @@
             <button class="arrow" onclick="left()" id = "left"> &#8592; </button>
             <div id="overTile">
                 <div id="mainTile"></div>
-                <button id="keep" onclick="keep()"> keep </button>
+                <button id="keep" onclick="keep();overlayOff()"> keep </button>
             </div>
             <button class="arrow" onclick="right()" id = "right"> &#8594; </button>
         </div>

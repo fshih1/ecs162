@@ -131,14 +131,23 @@ function getTile() {
 	var title = book.volumeInfo.title;
 	var author = book.volumeInfo.authors[0];
 	var descriptions = book.volumeInfo.description;
-	var cover = book.volumeInfo.imageLinks.thumbnail;
+
+	if(book.volumeInfo.imageLinks != null) {
+		var cover = book.volumeInfo.imageLinks.thumbnail;
+	} else {
+		var cover = null;
+	}
 
 	var tile = document.createElement('div');
 	tile.setAttribute('class', 'div1');
 	tile.id = book_counter;
 
 	var coverPgh = document.createElement('img');
-	coverPgh.src = cover;
+	if (cover == null) {
+		coverPgh.textContent = 'no image';
+	} else {
+		coverPgh.src = cover;
+	}
 	tile.append(coverPgh);
 	//
 	var subTile = document.createElement('div');
